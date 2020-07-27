@@ -1,4 +1,4 @@
-# Dockerized FTB Minecraft servers [![Build Status](https://travis-ci.org/artheus/feedthebeast-docker-servers.svg?branch=master)](https://travis-ci.org/artheus/feedthebeast-docker-servers)
+# Dockerized FTB Minecraft servers [![Build Status](https://travis-ci.org/bessex/feedthebeast-docker-servers.svg?branch=testing)](https://travis-ci.com/github/bessex/feedthebeast-docker-servers)
 
 ## This repository is up for adoption!
 If you are willing to adopt this project, please fork this repository and do so.
