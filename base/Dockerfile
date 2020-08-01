@@ -1,9 +1,12 @@
-FROM alpine:latest
+FROM openjdk:8u212-jre-alpine
 
 # Install dependencies
-RUN apk update \
-    && apk add --no-cache wget unzip openjdk8-jre bash \
-    && mkdir -p /opt/minecraft
+RUN apk add --no-cache -U \
+    wget \
+    unzip \
+    bash
+
+RUN mkdir -p /opt/minecraft
 
 WORKDIR /opt/minecraft
 
