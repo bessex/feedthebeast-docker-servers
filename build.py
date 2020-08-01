@@ -64,7 +64,7 @@ def do_build(docker_tag, download_url, dynmap_url):
 
 
 def docker_tag(name, pack_version="", mc_version="", latest=False):
-    tag = "feedthebeast/" + name
+    tag = "bessex/" + name
     if latest:
         return (tag, "latest")
     return (tag, pack_version + "_" + mc_version)

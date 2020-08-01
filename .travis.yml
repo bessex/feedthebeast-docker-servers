@@ -6,7 +6,7 @@ install:
 script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker build ./base -t feedthebeast/ftbbase
-  - python build.py
+  - python build.py -m "FTB Revelation"
 services:
   - docker
 os: linux
