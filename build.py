@@ -43,8 +43,12 @@ class Modpack:
 
 
 def do_build(docker_tag, download_url, dynmap_url):
-    command = 'docker build ./modserver -t "%s" --build-arg DOWNLOAD_URL=%s --build-arg DYNMAP_URL=%s' % (
-        docker_tag, download_url, dynmap_url
+
+    # Be prepared to drop DYNMAP_URL build-arg in case no dynmap_url exists for that mc_version
+    dynmap_build_arg = '--build-arg DYNMAP_URL=%s' % dynmap_url if dynmap_url else ''
+
+    command = 'docker build ./modserver -t "%s" --build-arg DOWNLOAD_URL=%s %s' % (
+        docker_tag, download_url, dynmap_build_arg
     )
 
     if not args.silent:
@@ -80,7 +84,12 @@ def build_modpack(modpack):
 
     for v in versions:
         download_url = "http://ftb.forgecdn.net/FTB2/modpacks/"+modpack.dir+"/"+v.replace('.','_')+"/"+modpack.server_pack
-        dynmap_url = DYNMAP_URLS[modpack.mc_version]
+
+        # Be prepared for a modpack whose mc_version is not supported by dynmap
+        try:
+            dynmap_url = DYNMAP_URLS[modpack.mc_version]
+        except KeyError:
+            dynmap_url = ""
 
         if v == modpack.version:
             builds['latest'] = (docker_tag(modpack.dir.lower(), latest=True), download_url, dynmap_url)
